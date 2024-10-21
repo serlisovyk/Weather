@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   const API_KEY = '73030be134ef0bd220f5b0fe6f959051'
-  const link = `http://api.weatherstack.com/current?access_key=${API_KEY}`
+  const link = `https://api.weatherstack.com/current?access_key=${API_KEY}`
 
   const root = document.querySelector('#root')
   const popup = document.querySelector('#popup')
