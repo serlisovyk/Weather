@@ -173,4 +173,24 @@ window.addEventListener('DOMContentLoaded', () => {
       handleFetchError()
     }
   }
+
+  function handleInput(e) {
+    store = { ...store, city: e.target.value }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const value = store.city
+
+    if (!value) return null
+
+    localStorage.setItem('query', value)
+    fetchData()
+    togglePopupClass()
+    textInput.value = ''
+  }
+
+  function togglePopupClass() {
+    popup.classList.toggle('active')
+  }
 })
