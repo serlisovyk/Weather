@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setHandlers()
+  fetchData()
 
   function setHandlers() {
     form.addEventListener('submit', handleSubmit)
@@ -101,6 +102,75 @@ window.addEventListener('DOMContentLoaded', () => {
         return 'cloud.png'
       default:
         return 'the.png'
+    }
+  }
+
+  async function fetchData() {
+    try {
+      const query = localStorage.getItem('query') || store.city
+      const result = await fetch(`${link}&query=${query}`)
+      const data = await result.json()
+
+      const {
+        current: {
+          cloudcover,
+          temperature,
+          humidity,
+          observation_time: observationTime,
+          pressure,
+          uv_index: uvIndex,
+          visibility,
+          is_day: isDay,
+          weather_descriptions: description,
+          wind_speed: windSpeed,
+        },
+        location: { name },
+      } = data
+
+      store = {
+        ...store,
+        isDay,
+        city: name,
+        temperature,
+        observationTime,
+        description: description[0],
+        properties: {
+          cloudcover: {
+            title: 'cloudcover',
+            value: `${cloudcover}%`,
+            icon: 'cloud.png',
+          },
+          humidity: {
+            title: 'humidity',
+            value: `${humidity}%`,
+            icon: 'humidity.png',
+          },
+          windSpeed: {
+            title: 'wind speed',
+            value: `${windSpeed} km/h`,
+            icon: 'wind.png',
+          },
+          pressure: {
+            title: 'pressure',
+            value: `${pressure} %`,
+            icon: 'gauge.png',
+          },
+          uvIndex: {
+            title: 'uv Index',
+            value: `${uvIndex} / 100`,
+            icon: 'uv-index.png',
+          },
+          visibility: {
+            title: 'visibility',
+            value: `${visibility}%`,
+            icon: 'visibility.png',
+          },
+        },
+      }
+
+      renderComponent()
+    } catch {
+      handleFetchError()
     }
   }
 })
