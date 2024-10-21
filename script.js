@@ -193,4 +193,17 @@ window.addEventListener('DOMContentLoaded', () => {
   function togglePopupClass() {
     popup.classList.toggle('active')
   }
+
+  function markupError() {
+    return `<div class="error">
+              <h2>Something went wrong :(</h2>
+              <button class="city-title" id="error">Search for another city</button>
+            </div>`
+  }
+
+  function handleFetchError() {
+    root.innerHTML = markupError()
+    const btnError = document.getElementById('error')
+    btnError.addEventListener('click', togglePopupClass)
+  }
 })
