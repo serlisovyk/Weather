@@ -1,9 +1,5 @@
 # Weather
 
-# Netlify
-
-https://weather5105.netlify.app/
-
 # Tools
 
 <p align="left">
@@ -23,6 +19,6 @@ https://weather5105.netlify.app/
   <img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/git-colored.svg" width="40" height="40" alt="Git" />
 </p>
 
-# How to copy
+# Netlify
 
-<p align="left">git clone https://github.com/serlisovyk/Weather.git</p>
+https://weather5105.netlify.app/
